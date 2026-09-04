@@ -3,6 +3,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from motor.motor_asyncio import AsyncIOMotorClient
+import uvicorn
 import stripe
 
 app = FastAPI()
@@ -60,3 +61,7 @@ async def create_checkout_session(data: CheckoutRequest):
         return {"url": checkout_session.url}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("server:app", host="0.0.0.0", port=port)
