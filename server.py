@@ -18,7 +18,7 @@ app.add_middleware(
 
 MONGO_URL = os.environ.get("MONGO_URL")
 client = AsyncIOMotorClient(MONGO_URL)
-db = client.get_database("missionefitness")
+db = client.get_database("FITNESS")
 
 stripe.api_key = os.environ.get("STRIPE_API_KEY")
 
